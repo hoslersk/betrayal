@@ -1,21 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+import Floor from './components/Floor'
+
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			floor: 'Ground'
+		}
+
+		this.changeFloor = this.changeFloor.bind(this)
+	}
+
+	changeFloor(event) {
+		this.setState({floor: event.target.name})
+	}
+
+	render() {
+		return (
+			<div className="App">
+				<div className="App-header">
+					Betrayal
+				</div>
+				<button name="Upper" onClick={this.changeFloor}>Upper</button>
+				<button name="Ground" onClick={this.changeFloor}>Ground</button>
+				<button name="Basement" onClick={this.changeFloor}>Basement</button>
+				<Floor view={this.state.floor} />
+			</div>
+		);
+	}
 }
 
 export default App;
